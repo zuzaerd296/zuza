@@ -1,0 +1,131 @@
+#include"header.h"
+
+using namespace std;
+
+void wstep() {
+	cout << "Witamy w grze \"zgadnij zwierzatko\"" << endl;
+	cout << "Wybierz opcje: " << endl << "1. Zaczynamy gre! \n2. Wyjscie z gry." << endl;
+}
+
+elem* stworz_element(string zw, string gat, string PytLat, string PytSr, string PytTru)
+{
+	Zwierzatko nowe;
+	nowe.wpisz(zw, PytLat, PytSr, PytTru);
+	nowe.wpisz_gatunek(gat);
+	elem*nowy = new elem(nowe);
+	return nowy;
+}
+
+void PobierzDane(const string& dane, Lista_zw& lista)
+{
+	ifstream plik(dane);
+	if (plik)
+	{
+		string zw, gat, PytLat, PytSr, PytTru, smieci;
+		elem*temp = nullptr;
+		int i = 0;
+
+		while (!plik.eof())
+		{
+			getline(plik, zw);
+			getline(plik, gat);
+			getline(plik, PytLat);
+			getline(plik, PytSr);
+			getline(plik, PytTru);
+			getline(plik, smieci);
+			temp = stworz_element(zw, gat, PytLat, PytSr, PytTru);
+			lista.push(temp); //dodajemy na poczatek
+			i++;
+		}
+		lista.wpisz_dl(i);
+		plik.close();
+		
+	}
+	else
+	{
+		cout << "Nie istnieje plik o takiej nazwie." << endl;
+		plik.close();
+	}
+}
+
+void zasady() {
+	cout << "INSTRUKCJA" << endl;
+	cout << "Za chwile na ekranie pojawi ci sie pierwsza podpowedz. \nJesli bedziesz wiedziec o jakie zwierze chodzi, \nwpisz je i kliknij enter. Jeli odpowiedz bedzie poprawna \nuzysasz maksymalna liczbe punktow (10). " << endl;
+	cout << "Przy zlej odpowiedzi stracisz kolejno 4 i 3 punkty oraz \npojawi sie na ekranie kolejna podpowiedz." << endl;
+	cout << "Jeli po trzeciej podpowiedzi nie uda ci sie zgadnac zwierzatka, \ngra sie konczy a twoj wynik to 0 punktow." << endl;
+	cout << "POWODZENIA!!!" << endl;
+}
+
+void zgadywanie(Zwierzatko wylosowane, punkty& ile) {
+	string haslo;
+	string zwierze = wylosowane.zwroc_zw();
+	int wynik_akt= 10;
+
+	wylosowane.wypisz_T();
+	cin >> haslo;
+	if (haslo == zwierze) {
+		cout << "Udalo sie!" << endl;
+		cout << "Zdobyte punkty: " << wynik_akt << endl;
+	}
+	else {
+		cout << "Probuj dalej" << endl;
+		wynik_akt = 6;
+		wylosowane.wypisz_S();
+		cin >> haslo;
+		if (haslo == zwierze) {
+			cout << "Udalo sie!" << endl;
+			cout << "Zdobyte punkty: " << wynik_akt << endl;
+		}
+		else {
+			cout << "Probuj dalej" << endl;
+			wynik_akt = 3;
+			wylosowane.wypisz_L();
+			cin >> haslo;
+			if (haslo == zwierze) {
+				cout << "Udalo sie!" << endl;
+				cout << "Zdobyte punkty: " << wynik_akt << endl;
+			}
+			else {
+				wynik_akt = 0;
+				cout << "Nie udalo sie..." << endl;
+				cout << "To zwierze to: ";
+				wylosowane.wypisz_zw();
+				cout << "Zdobyte punkty: " << wynik_akt << endl;
+			}
+		}
+	}
+	int wynik = ile.zwroc_wynik();
+	wynik += wynik_akt;
+	ile.ustaw_punkty(wynik);
+	cout << "Laczny wynik: ";
+	ile.wypisz();
+}
+
+void gra(Lista_zw lista) {
+	system("cls");
+	zasady();
+	system("PAUSE");
+	system("cls");
+	Zwierzatko wylosowane;
+	punkty ile;
+	ile.ustaw_punkty(0);
+
+	wylosowane = lista.losuj_zwierzatko();
+	zgadywanie(wylosowane, ile);
+
+	int x;
+	cout << "Jesli chcesz grac dalej wpisz 1, \njesli chcesz wyjsc z gry lub rozpoczac gre od nowa (z liczba puntkow 0) wpisz 2" << endl;
+	cin >> x;
+	while (x == 1) {
+		system("cls");
+		wylosowane = lista.losuj_zwierzatko();
+		zgadywanie(wylosowane, ile);
+		cout << "Jesli chcesz grac dalej wpisz 1, \njesli chcesz wyjsc z gry lub rozpoczac gre od nowa (z liczba puntkow 0) wpisz 2" << endl;
+		cin >> x;
+	}
+
+	//skoro chcemy nowego gracza to zapisujemy tego na liscie
+	gracz nowy;
+	//nowy.wpisz_gracza(ile);
+
+}
