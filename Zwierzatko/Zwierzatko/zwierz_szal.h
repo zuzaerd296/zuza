@@ -17,5 +17,6 @@ public:
 	string zwroc_zw() { return zwierze; }
 	void sprawdz_zw(int losowa);
 	void wpisz(string zwierze, string Latwe, string Srednie, string Trudne);
+	void zgadywanie(punkty& ile); /* Funkcja wypisuje podopiedzi i sprawdza wpisywane hasla. Przyjmuje wartosci: wylosowane zwierzatko oraz ilosc zbobytych juz punktow */
 
 };

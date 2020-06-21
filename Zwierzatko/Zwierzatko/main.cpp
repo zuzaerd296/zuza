@@ -7,17 +7,17 @@ int main()
 {
 	srand(time(NULL));
 	Lista_zw Listazw;
-	Tgraczy najlepsi;
-	PobierzDane("zwierzeta.txt",Listazw);
+	//Tgraczy najlepsi;
+	Listazw.PobierzDane("zwierzeta.txt");
 	int opcja;
 	do
 	{
 		system("cls");
-		wstep();
+		Listazw.wstep();
 		cin >> opcja;
 		switch (opcja)
 		{
-		case 1: gra(Listazw);
+		case 1: Listazw.gra();
 			break;
 		case 2: cout << "Wyjscie z gry..." << endl;
 			break;
@@ -27,6 +27,6 @@ int main()
 
 	} while (opcja != 2);
 
-	system("PAUSE");
+	
 	return 0;
 }

@@ -22,5 +22,9 @@ public:
 	//friend ostream& operator << (ostream& os, const Lista_zw& X);
 	Lista_zw& operator = (Lista_zw& X);
 	void wypiszListe();//do sprawdzenia czy dobrze wprowadzialam dane
-	
+	void gra(); /*Glowna funkcja gry wywolujaca inne funkcje. Przyjemuje liste zwierzat*/
+	void PobierzDane(const string& dane); //Funkcja wczytuje dane z pliku do listy zwierzat
+	void zasady();
+	void wstep();
+	elem* stworz_element(string zw, string gat, string PytLat, string PytSr, string PytTru); /*Funkcja tworzy element listy zwierzat. Przyjmuje waroœci wpisywane do elementow*/
 };

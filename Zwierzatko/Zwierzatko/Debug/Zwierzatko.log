@@ -1,2 +1,8 @@
-﻿  funkcje.cpp
-  Zwierzatko.vcxproj -> C:\Users\Zuzka\Desktop\studia\pk\PK3\Zwierzatko\Debug\Zwierzatko.exe
+﻿  kl.zwierzatko.cpp
+  lista_zw.cpp
+  main.cpp
+C:\Users\zuzaa\source\repos\zuza\Zwierzatko\Zwierzatko\main.cpp(8,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  punkty.cpp
+  zwierz_szal.cpp
+  Generowanie kodu...
+  Zwierzatko.vcxproj -> C:\Users\zuzaa\source\repos\zuza\Zwierzatko\Debug\Zwierzatko.exe

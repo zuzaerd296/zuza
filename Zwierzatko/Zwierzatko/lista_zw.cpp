@@ -64,3 +64,82 @@ void Lista_zw::wypiszListe() {  //sprawdzam czy sie wszytko dobrze zpisalo
 		temp = temp->next;
 	}
 }
+
+void Lista_zw::gra() {
+	system("cls");
+	this->zasady();
+	system("PAUSE");
+	system("cls");
+	Zwierzatko wylosowane;
+	punkty ile;
+	ile.ustaw_punkty(0);
+
+	wylosowane = this->losuj_zwierzatko();
+	wylosowane.zgadywanie(ile);
+
+	int x;
+	cout << "Jesli chcesz grac dalej wpisz 1, \njesli chcesz wyjsc z gry lub rozpoczac gre od nowa (z liczba puntkow 0) wpisz 2" << endl;
+	cin >> x;
+	while (x == 1) {
+		system("cls");
+		wylosowane = this->losuj_zwierzatko();
+		wylosowane.zgadywanie(ile);
+		cout << "Jesli chcesz grac dalej wpisz 1, \njesli chcesz wyjsc z gry lub rozpoczac gre od nowa (z liczba puntkow 0) wpisz 2" << endl;
+		cin >> x;
+	}
+
+}
+
+void Lista_zw::PobierzDane(const string& dane)
+{
+	ifstream plik(dane);
+	if (plik)
+	{
+		string zw, gat, PytLat, PytSr, PytTru, smieci;
+		elem* temp = nullptr;
+		int i = 0;
+
+		while (!plik.eof())
+		{
+			getline(plik, zw);
+			getline(plik, gat);
+			getline(plik, PytLat);
+			getline(plik, PytSr);
+			getline(plik, PytTru);
+			getline(plik, smieci);
+			temp = this->stworz_element(zw, gat, PytLat, PytSr, PytTru);
+			this->push(temp); //dodajemy na poczatek
+			i++;
+		}
+		this->wpisz_dl(i);
+		plik.close();
+
+	}
+	else
+	{
+		cout << "Nie istnieje plik o takiej nazwie." << endl;
+		plik.close();
+	}
+}
+
+void Lista_zw::wstep() {
+	cout << "Witamy w grze \"zgadnij zwierzatko\"" << endl;
+	cout << "Wybierz opcje: " << endl << "1. Zaczynamy gre! \n2. Wyjscie z gry." << endl;
+}
+
+void Lista_zw::zasady() {
+	cout << "INSTRUKCJA" << endl;
+	cout << "Za chwile na ekranie pojawi ci sie pierwsza podpowedz. \nJesli bedziesz wiedziec o jakie zwierze chodzi, \nwpisz je i kliknij enter. Jeli odpowiedz bedzie poprawna \nuzysasz maksymalna liczbe punktow (10). " << endl;
+	cout << "Przy zlej odpowiedzi stracisz kolejno 4 i 3 punkty oraz \npojawi sie na ekranie kolejna podpowiedz." << endl;
+	cout << "Jeli po trzeciej podpowiedzi nie uda ci sie zgadnac zwierzatka, \ngra sie konczy a twoj wynik to 0 punktow." << endl;
+	cout << "POWODZENIA!!!" << endl;
+}
+
+elem* Lista_zw::stworz_element(string zw, string gat, string PytLat, string PytSr, string PytTru)
+{
+	Zwierzatko nowe;
+	nowe.wpisz(zw, PytLat, PytSr, PytTru);
+	nowe.wpisz_gatunek(gat);
+	elem* nowy = new elem(nowe);
+	return nowy;
+}
