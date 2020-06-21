@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Druzyna</class>
+ <widget class="QMainWindow" name="Druzyna">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>530</width>
+    <height>361</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Druzyna</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>10</y>
+      <width>501</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTableView" name="tableView"/>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="dodaj">
+         <property name="text">
+          <string>Dodaj osobe</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="usun">
+         <property name="text">
+          <string>Usun osobe</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="szukaj">
+         <property name="text">
+          <string>Szukaj</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cofjnij">
+         <property name="text">
+          <string>Cofnij</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="wyjdz">
+         <property name="text">
+          <string>Wyjdz</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>530</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>dodaj</sender>
+   <signal>clicked()</signal>
+   <receiver>Druzyna</receiver>
+   <slot>dodaj_os()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>74</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>78</x>
+     <y>272</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>usun</sender>
+   <signal>clicked()</signal>
+   <receiver>Druzyna</receiver>
+   <slot>usun_os()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>191</x>
+     <y>245</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>202</x>
+     <y>200</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>szukaj</sender>
+   <signal>clicked()</signal>
+   <receiver>Druzyna</receiver>
+   <slot>szukaj()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>279</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>198</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cofjnij</sender>
+   <signal>clicked()</signal>
+   <receiver>Druzyna</receiver>
+   <slot>cofnij_do_j()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>367</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>398</x>
+     <y>197</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wyjdz</sender>
+   <signal>clicked()</signal>
+   <receiver>Druzyna</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>473</x>
+     <y>256</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>463</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>dodaj_os()</slot>
+  <slot>usun_os()</slot>
+  <slot>szukaj()</slot>
+  <slot>cofnij_do_j()</slot>
+ </slots>
+</ui>
